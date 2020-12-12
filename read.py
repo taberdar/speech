@@ -28,7 +28,5 @@ for _ in range(50): time.sleep(0.1)  # we're still listening even though the mai
 
 # calling this function requests that the background listener stop listening
 stop_listening(wait_for_stop=False)
-print('Done')
-
 # do some more unrelated things
 #while True: time.sleep(0.1)  # we're not listening anymore, even though the background thread might still be running for a second or two while cleaning up and stopping
