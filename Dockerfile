@@ -1,3 +1,5 @@
+#docker build --rm -t sound .
+#docker run -it --privileged --device /dev/snd:/dev/snd sound
 from python:3
 run apt-get update
 run apt-get install -y \
@@ -13,3 +15,5 @@ run apt-get install -y libasound2-dev
 run cd portaudio && ./configure && make && make install && ldconfig
 run python -m pip install pyaudio
 run python -m pip install SpeechRecognition
+run mkdir -p /sound
+copy read.py /sound/
