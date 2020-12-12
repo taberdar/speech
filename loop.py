@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
 
+import smtplib
+
+gmail_user = 'xx@gmail.com'
+gmail_password = 'xx'
+
+sent_from = gmail_user
+to = ['recipient']
+subject = "Swearing"
+body = "Rude"
+
+email_text = """\
+From: %s
+To: %s
+Subject: %s
+
+%s
+""" % (sent_from, ", ".join(to), subject, body)
+
 import speech_recognition as sr
 
 r = sr.Recognizer()
@@ -19,6 +37,15 @@ try:
             rude = value.find('*')
             if rude != -1:
                 print("Rude")
+                try:
+                    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                    server.ehlo()
+                    server.login(gmail_user, gmail_password)
+                    server.sendmail(sent_from, to, email_text)
+                    server.close()
+                    print ("Email sent!")
+                except:
+                    print ('Something went wrong...')
 
             # we need some special handling here to correctly print unicode characters to standard output
             if str is bytes:  # this version of Python uses bytes for strings (Python 2)
