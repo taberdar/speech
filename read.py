@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import time
 import speech_recognition as sr
 
